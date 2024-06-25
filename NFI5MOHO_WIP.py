@@ -102,9 +102,9 @@ class NFI5MOHO_WIP(IStrategy):
     timeframe = '5m'
     inf_1h = '1h'
     process_only_new_candles = True
-    use_sell_signal = True
-    sell_profit_only = False
-    ignore_roi_if_buy_signal = True
+    use_exie_signal = True
+    exit_profit_only = False
+    ignore_roi_if_entry_signal = True
     startup_candle_count: int = 300
 
     plot_config = {
