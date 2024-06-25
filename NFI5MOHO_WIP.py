@@ -102,9 +102,9 @@ class NFI5MOHO_WIP(IStrategy):
     timeframe = '5m'
     inf_1h = '1h'
     process_only_new_candles = True
-    use_exie_signal = True
-    exit_profit_only = False
-    ignore_roi_if_entry_signal = True
+    use_sell_signal = True
+    sell_profit_only = False
+    ignore_roi_if_buy_signal = True
     startup_candle_count: int = 300
 
     plot_config = {
@@ -301,7 +301,7 @@ class NFI5MOHO_WIP(IStrategy):
     def get_ticker_indicator(self):
         return int(self.timeframe[:-1])
 
-    def custom_sell(self, pair: str, trade: 'Trade', current_time: 'datetime', current_rate: float,
+    def custom_exit(self, pair: str, trade: 'Trade', current_time: 'datetime', current_rate: float,
                     current_profit: float, **kwargs):
         dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
         last_candle = dataframe.iloc[-1].squeeze()
@@ -615,7 +615,7 @@ class NFI5MOHO_WIP(IStrategy):
                 (dataframe['close'] > dataframe['ema_offset_sell']) &
                 (dataframe['rsi'] > self.sell_rsi_bb_2.value)
             )
-        if self.sell_condition_3_enable.value:
+                if self.sell_condition_3_enable.value:
             conditions.append(
                 (dataframe['close'] > dataframe['ema_offset_sell']) &
                 (dataframe['rsi'] > self.sell_rsi_main_3.value)
@@ -654,7 +654,7 @@ class NFI5MOHO_WIP(IStrategy):
                 'sell'] = 1
 
         return dataframe
-        
+     
 # Elliot Wave Oscillator
 def EWO(dataframe, sma1_length=5, sma2_length=35):
     df = dataframe.copy()
