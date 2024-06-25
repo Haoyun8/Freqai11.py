@@ -615,7 +615,7 @@ class NFI5MOHO_WIP(IStrategy):
                 (dataframe['close'] > dataframe['ema_offset_sell']) &
                 (dataframe['rsi'] > self.sell_rsi_bb_2.value)
             )
-                if self.sell_condition_3_enable.value:
+        if self.sell_condition_3_enable.value:
             conditions.append(
                 (dataframe['close'] > dataframe['ema_offset_sell']) &
                 (dataframe['rsi'] > self.sell_rsi_main_3.value)
