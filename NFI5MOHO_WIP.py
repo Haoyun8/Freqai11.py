@@ -446,7 +446,7 @@ class NFI5MOHO_WIP(IStrategy):
 
         return dataframe
 
-    def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         conditions = []
 
         if self.buy_condition_1_enable.value:
@@ -602,7 +602,7 @@ class NFI5MOHO_WIP(IStrategy):
 
         return dataframe
 
-    def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         conditions = []
 
         if self.sell_condition_1_enable.value:
@@ -654,7 +654,7 @@ class NFI5MOHO_WIP(IStrategy):
                 'sell'] = 1
 
         return dataframe
-      
+        
 # Elliot Wave Oscillator
 def EWO(dataframe, sma1_length=5, sma2_length=35):
     df = dataframe.copy()
